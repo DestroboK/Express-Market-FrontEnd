@@ -18,7 +18,11 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@types/google.maps": "^3.49.2",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.4.1",
     "rxjs": "~7.4.0",
+    "sweetalert2": "^11.4.19",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -34,6 +38,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "@types/google.maps": "^3.49.2",
     "typescript": "~4.4.3"
   }
 }

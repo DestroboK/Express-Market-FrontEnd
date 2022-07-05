@@ -1,0 +1,14 @@
+
+<p-menubar [model]="items">
+    <ng-template pTemplate="end">
+        <input type="text" pInputText placeholder="Search">
+        <input type="text" pInputText placeholder="Search" [(ngModel)]="value3">
+        <button pButton pRipple type="button"  class="p-button" icon="pi pi-search"></button>
+    </ng-template>
+    <span class="p-input-icon-right">
+        <i class="pi pi-search"></i>
+    </span>
+    <p-avatar label="K" pBadge value="4" styleClass="mr-2" shape="circle"></p-avatar>
+</p-menubar>
+
+<p-gmap [options]="options" [style]="{'width':'100%','height':'320px'}" ></p-gmap>

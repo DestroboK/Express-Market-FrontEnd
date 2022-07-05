@@ -1,0 +1,36 @@
+
+.auth-wrapper-card{
+   padding: 1%;
+    width: 500px; 
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+}
+.auth-img{
+    max-width: 10vw;
+}
+@media (max-width: 600px) {
+    .auth-wrapper-card{
+        padding: 5% 2% 5% 2%;
+         width: 500px; 
+         overflow: hidden;
+         border-radius: 15px;
+         text-align: center;
+     }
+  }
+.auth-wrapper{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+#particles-js{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-size: cover;
+    z-index: -1;
+  background-image: url(../../../../assets/images/bg-03.jpg);
+}
