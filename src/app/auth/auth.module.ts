@@ -13,10 +13,8 @@ import {CardModule} from 'primeng/card';
 import {ImageModule} from 'primeng/image';
 import {ButtonModule} from 'primeng/button';
 import {TooltipModule} from 'primeng/tooltip';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
-
+import {InputMaskModule} from 'primeng/inputmask';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -33,9 +31,8 @@ import {ToastModule} from 'primeng/toast';
     ImageModule,
     ButtonModule,
     TooltipModule,
-    MessageModule,
-    MessagesModule,
-    ToastModule
+    ToastModule,
+    InputMaskModule
   ]
 })
 export class AuthModule { }

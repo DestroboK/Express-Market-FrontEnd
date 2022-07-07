@@ -14,8 +14,8 @@ import {MessageService} from 'primeng/api';
 export class LoginComponent {
 value3!: string;
 miFormulario: FormGroup = this.fb.group({
-  email: ['test1@hotmail.com' , [Validators.required, Validators.email]],
-  password: ['12345678' , [Validators.required, Validators.minLength(8)]]
+  email: ['' , [Validators.required, Validators.email]],
+  password: ['' , [Validators.required, Validators.minLength(8)]]
 })
 constructor(private fb: FormBuilder,
             private router: Router,

@@ -5,7 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {RippleModule} from 'primeng/ripple';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import {ToastModule} from 'primeng/toast';
     AppRoutingModule,
     RippleModule,
     ToastModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule  ,
+     MessageModule,
+    MessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
