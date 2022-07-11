@@ -13,6 +13,9 @@ import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {GMapModule} from 'primeng/gmap';
 
+import {ContextMenuModule} from 'primeng/contextmenu';
+import {TabViewModule} from 'primeng/tabview';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -29,7 +32,10 @@ import {GMapModule} from 'primeng/gmap';
     InputTextModule,
     FormsModule,
     ButtonModule,
-    GMapModule
+    GMapModule,
+    ContextMenuModule,
+    TabViewModule,
+    DropdownModule
   ]
 })
 export class ProtectedModule { }

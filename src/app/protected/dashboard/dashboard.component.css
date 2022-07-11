@@ -1,0 +1,9 @@
+.separator{
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+}
+.separator > .p-inputgroup{
+    margin-right: 20%;
+}

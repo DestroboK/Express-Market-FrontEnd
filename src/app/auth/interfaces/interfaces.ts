@@ -3,13 +3,12 @@ export interface AuthResponse{
     uid?: string
     name?: string,
     token?: string,
-    msg?: string,
-    role?: string
+    msg?: string
 }
 
 export interface Usuario{
     uid: string,
     name?: string,
-    role?: string,
+    address?: string,
     token?: string
 }

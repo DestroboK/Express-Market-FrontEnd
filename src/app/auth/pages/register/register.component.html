@@ -1,6 +1,6 @@
 
 <p-toast></p-toast>
-<div class="container-login">
+<div class="container-login" >
 
  <span class="login100-form-title p-b-15">
      !Bienvenido/a!  Regístrate
@@ -12,29 +12,30 @@
  <div class="p-inputgroup wrap-input">
      
      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-     <input class="input" type="name" pTooltip="Escribe tu nombre" formControlName="email" pPassword placeholder="Nombre completo">         
+     <input class="input" type="text" pTooltip="Escribe tu nombre" formControlName="name" [feedback]="false"  pPassword placeholder="Nombre completo">         
 
  </div>
 
  <div class="p-inputgroup wrap-input">
      
     <span class="p-inputgroup-addon"><i class="pi pi-at"></i></span>
-    <input class="input" type="email" pTooltip="Escribe tu correo" formControlName="email" pPassword placeholder="Correo elecrónico">         
+    <input class="input" type="email" pTooltip="Escribe tu correo" formControlName="email" [feedback]="false"  pPassword placeholder="Correo elecrónico">         
 
 </div>
- <div class="p-inputgroup wrap-input">
+ <div id="password-div" class="p-inputgroup wrap-input">
      <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-     <input class="input" type="password"  pTooltip="Escribe tu contraseña" formControlName="password" [feedback]="false" pPassword placeholder="Contraseña">             
+     <input class="input" type="password" mediumRegex pTooltip="Escribe tu contraseña."  mediumLabel="Aceptable" promptLabel="Ingresa tu contraseña" [feedback]="true" weakLabel="Muy Débil"
+      strongLabel="Fuerte"  formControlName="password" pPassword placeholder="Contraseña">             
  </div>
  <div class="p-inputgroup wrap-input">
      
     <span class="p-inputgroup-addon"><i class="pi pi-map-marker"></i></span>
-    <input class="input" type="address" pTooltip="Escribe tu Direccion" formControlName="email" pPassword placeholder="Direccion escrita">         
+    <input class="input" id="direccion" type="text" pTooltip="Escribe tu direccion" formControlName="address" pPassword [feedback]="false"  placeholder="Direccion escrita">         
 
 </div>
 
- <button pButton type="button" type="submit" class="p-button-lg" label="Iniciar Sesión" [disabled]="miFormulario.invalid" ></button>
- <button pButton type="button" (click)="failure()" class="p-button-lg p-button-danger" label="Simular error"></button>    
+ <button pButton type="button" type="submit" class="p-button-lg" label="Crear cuenta" [disabled]="miFormulario.invalid" ></button>
+
 </form>
 
 

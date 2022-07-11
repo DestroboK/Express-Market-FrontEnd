@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
 import {MessageService} from 'primeng/api';
+import { delay } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,22 +15,38 @@ import {MessageService} from 'primeng/api';
 export class LoginComponent {
 value3!: string;
 miFormulario: FormGroup = this.fb.group({
-  email: ['' , [Validators.required, Validators.email]],
-  password: ['' , [Validators.required, Validators.minLength(8)]]
+  email: ['test3@test.com' , [Validators.required, Validators.email]],
+  password: ['123456' , [Validators.required, Validators.minLength(6)]]
 })
+
 constructor(private fb: FormBuilder,
             private router: Router,
             private authService: AuthService,
             private messageService: MessageService) {}
 
 login(){
-
-  this.router.navigateByUrl('/dashboard')
-  this.messageService.add({severity:'success', summary: 'Ok', detail: 'Inicio de sesion satisfactorio'});
+  const {email, password } = this.miFormulario.value;
+  this.authService.login(email, password)
+  .subscribe(ok=>{
+    console.log(ok);
+    if(ok === true){
+      this.messageService.add({severity:'success', summary: 'Ok', detail: 'Inicio de sesion satisfactorio'});
+      this.miFormulario.controls['email'].setErrors({'incorrect': true})
+      this.miFormulario.invalid == true;
+      new Promise(resolve => {
+        setTimeout(() => {
+          this.router.navigateByUrl('/dashboard')
+        }, 2 * 1000)
+      })
+     
+      
+    } else {
+      this.messageService.add({severity:'error', summary: 'Error', detail: ok});
+    }
+  })
+  
+ 
 } 
 
-failure(){
-  this.messageService.add({severity:'error', summary: 'Error', detail: 'Algo salio mal iniciando sesion'});
-}
 }
 

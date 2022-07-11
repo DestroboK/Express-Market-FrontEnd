@@ -1,6 +1,14 @@
 form{
   width: 85%;
 }
+
+:host ::ng-deep .p-password {
+ background-color: aqua;
+}
+:host ::ng-deep .p-password > input {
+  width: 100%;
+  height: 55px;
+}
 .container-login{
   width: 100%;
   display: flex;

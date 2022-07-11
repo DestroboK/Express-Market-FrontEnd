@@ -15,6 +15,8 @@ import {ButtonModule} from 'primeng/button';
 import {TooltipModule} from 'primeng/tooltip';
 import {ToastModule} from 'primeng/toast';
 import {InputMaskModule} from 'primeng/inputmask';
+import {DividerModule} from 'primeng/divider';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -32,7 +34,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     ButtonModule,
     TooltipModule,
     ToastModule,
-    InputMaskModule
+    InputMaskModule,
+    DividerModule
   ]
 })
 export class AuthModule { }

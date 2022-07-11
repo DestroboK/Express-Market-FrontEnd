@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://express-market-g5.herokuapp.com/api'
 };
+
