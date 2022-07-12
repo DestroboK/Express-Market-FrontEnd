@@ -1,22 +1,3 @@
 
-<p-menubar [model]="items">
-    <ng-template pTemplate="start">
-        <!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown> -->
-        <img src="../../../assets/images/logo_navbar.png" height="40" class="mr-2">
-    </ng-template>
-    <ng-template pTemplate="end">
-        <div class="separator">
-        <div class="p-inputgroup">
-        
-            <input type="text" pInputText placeholder="Vote">   
-            <button type="button" pButton pRipple icon="pi pi-times" styleClass="p-button-danger"></button>      
-        </div>
-        <p-avatar #img pRipple [label]="inicial" (click)="menu.toggle($event)" pBadge value="4" size="large" shape="circle" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"></p-avatar>
 
-        <p-menu #menu [popup]="true" [model]="items"></p-menu>
-        </div>
-    </ng-template>
-    
-</p-menubar>
-
-<p-gmap [options]="options" [style]="{'width':'100%','height':'320px'}" ></p-gmap>
+El codigo de brian va aqui

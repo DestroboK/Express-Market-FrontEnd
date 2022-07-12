@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -12,11 +12,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   value3! : string;
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
     private router: Router,
     private authService: AuthService,
     private messageService: MessageService) { }
-  miFormulario: FormGroup = this.fb.group({
+  miFormulario: UntypedFormGroup = this.fb.group({
     email: ['' , [Validators.required, Validators.email]],
     name: ['' , [Validators.required, Validators.minLength(5)]],
     address: ['' , [Validators.required , Validators.minLength(5)]],

@@ -16,12 +16,14 @@ import {GMapModule} from 'primeng/gmap';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabViewModule} from 'primeng/tabview';
 import {DropdownModule} from 'primeng/dropdown';
+import { MainComponent } from './main/main.component';
 @NgModule({
   declarations: [
     DashboardComponent,
     ShoppingCartComponent,
     OrdersComponent,
-    NavbarComponent
+    NavbarComponent,
+    MainComponent
   ],
   imports: [
     CommonModule,
