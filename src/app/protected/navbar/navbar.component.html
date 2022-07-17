@@ -1,20 +1,35 @@
-<p-menubar [model]="items" >
+<p-menubar [model]="items">
     <ng-template pTemplate="start">
         <img src="../../../assets/images/logo_navbar.png" height="40" class="mr-2">
     </ng-template>
     <ng-template pTemplate="end">
         <div class="separator">
+            
         <div class="p-inputgroup searchbar">
-            <button type="button" pButton pRipple label="Todos"></button>
-            <input type="text" pInputText placeholder="...">   
-            <button type="button" pButton pRipple icon="pi pi-search"></button>      
+            <button pButton pRipple type="button"  icon="pi pi-filter-fill"  (click)="filters.toggle($event)" ></button>
+            <input type="text" pInputText [placeholder]="selectedCategories"> 
+            <button pButton pRipple type="button"   icon="pi pi-search"></button>      
         </div>
-        
-        <p-avatar #img pRipple [label]="inicial" (click)="menu.toggle($event)" pBadge value="4" size="large" shape="circle" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"></p-avatar>
 
-        <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        <p-avatar  [label]="inicial" (click)="menu.toggle($event)" pBadge value="4" size="large" shape="circle" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"></p-avatar>
+
+        <p-menu #menu [popup]="true" [model]="avatarMenu"></p-menu>
         </div>
     </ng-template>
-    
+    <p-overlayPanel #filters [showCloseIcon]="true" >
+        <ul>
+        <li *ngFor="let categoria of categorias; let i = index" [attr.data-index]="i">
+            <div class="field-checkbox">
+                <p-radioButton [value]="categoria.name" [(ngModel)]="selectedCategories" inputId="${categoria.name}"></p-radioButton>
+                <label for="ny">{{categoria.name}}</label>
+            </div>
+        </li>
+        <li>
+            <div class="field-checkbox">
+                <p-radioButton value="" [(ngModel)]="selectedCategories" selected="true" inputId="*"></p-radioButton>
+                <label for="ny">Todo</label>
+            </div>
+        </li>
+    </ul>
+    </p-overlayPanel>
 </p-menubar>
-

@@ -13,10 +13,16 @@ import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {GMapModule} from 'primeng/gmap';
 
+import {PanelMenuModule} from 'primeng/panelmenu';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabViewModule} from 'primeng/tabview';
 import {DropdownModule} from 'primeng/dropdown';
 import { MainComponent } from './main/main.component';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {CheckboxModule} from 'primeng/checkbox';
+import {ChipModule} from 'primeng/chip';
+import {ChipsModule} from 'primeng/chips';
+import {RadioButtonModule} from 'primeng/radiobutton';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -37,7 +43,13 @@ import { MainComponent } from './main/main.component';
     GMapModule,
     ContextMenuModule,
     TabViewModule,
-    DropdownModule
+    DropdownModule,
+    PanelMenuModule,
+    OverlayPanelModule,
+    CheckboxModule,
+    ChipModule,
+    ChipsModule,
+    RadioButtonModule
   ]
 })
 export class ProtectedModule { }

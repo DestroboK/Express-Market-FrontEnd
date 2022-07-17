@@ -9,8 +9,8 @@
 }
 .searchbar{
     position: fixed;
-    left: 33%;
-    max-width: 50%;
+    left: 30%;
+    max-width: 40%;
 }
 
 p-menubar > li{
@@ -20,4 +20,21 @@ p-menubar > li{
 }
 a.p-menubar-button{
     order: 3;
+}
+@media screen and (min-width:961px){
+    :host ::ng-deep p-menubarsub {
+        position: absolute;
+        right: 5%;
+    }
+
+}
+@media screen and (max-width:370px){
+    .searchbar{
+        left: 40%;
+    }
+
+}
+.searchInput{
+    display: flex;
+    flex-direction: column;
 }
