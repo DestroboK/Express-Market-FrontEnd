@@ -13,6 +13,9 @@ import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {GMapModule} from 'primeng/gmap';
 
+import {GalleriaModule} from 'primeng/galleria';
+
+
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabViewModule} from 'primeng/tabview';
 import {DropdownModule} from 'primeng/dropdown';
@@ -36,7 +39,8 @@ import { MainComponent } from './main/main.component';
     ButtonModule,
     GMapModule,
     ContextMenuModule,
-    TabViewModule,
+    ButtonModule,
+    GalleriaModule,
     DropdownModule
   ]
 })
