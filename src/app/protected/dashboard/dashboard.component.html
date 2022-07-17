@@ -1,3 +1,13 @@
+<p-galleria [value]="images" [circular]="true" [autoPlay]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{'height': '300px','overflow':'hidden'}" [numVisible]="5"
+    [circular]="true" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true" [showItemNavigatorsOnHover]="true"
+    [showIndicatorsOnItem]="true"> 
+    <ng-template pTemplate="item" let-item>
+        <img [src]="item.previewImageSrc" style="width: 100%; display: block;" />
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.thumbnailImageSrc" style="display: block;" />
+        </div>
+    </ng-template>
+</p-galleria>
 
-
-El codigo de brian va aqui

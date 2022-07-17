@@ -1,0 +1,11 @@
+img {
+    width:inherit;
+}
+
+.item {
+    border:1px solid pink;
+    width: 120px;
+    float: left;
+    margin: 3px;
+    padding: 3px;
+}

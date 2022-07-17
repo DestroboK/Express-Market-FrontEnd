@@ -13,7 +13,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {GMapModule} from 'primeng/gmap';
 
-import {PanelMenuModule} from 'primeng/panelmenu';
+import {GalleriaModule} from 'primeng/galleria';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabViewModule} from 'primeng/tabview';
 import {DropdownModule} from 'primeng/dropdown';
@@ -42,14 +42,10 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     ButtonModule,
     GMapModule,
     ContextMenuModule,
-    TabViewModule,
-    DropdownModule,
-    PanelMenuModule,
-    OverlayPanelModule,
-    CheckboxModule,
-    ChipModule,
-    ChipsModule,
-    RadioButtonModule
+    ButtonModule,
+    GalleriaModule,
+    DropdownModule
+
   ]
 })
 export class ProtectedModule { }
