@@ -1,13 +1,20 @@
-<p-galleria [value]="images" [circular]="true" [autoPlay]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{'height': '300px','overflow':'hidden'}" [numVisible]="5"
-    [circular]="true" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true" [showItemNavigatorsOnHover]="true"
-    [showIndicatorsOnItem]="true"> 
-    <ng-template pTemplate="item" let-item>
-        <img [src]="item.previewImageSrc" style="width: 100%; display: block;" />
-    </ng-template>
-    <ng-template pTemplate="thumbnail" let-item>
-        <div class="grid grid-nogutter justify-content-center">
-            <img [src]="item.thumbnailImageSrc" style="display: block;" />
-        </div>
-    </ng-template>
-</p-galleria>
+<div class="dashboard-container" >
+    <carousel class="carousel"
+    [height]="300"
+    [images]="images"
+    [objectFit]="'cover'" 
+    [cellWidth]="'100%'"  
+        [loop]="true" 
+        [autoplay]="true"  
+        [pauseOnHover]="true" 
+        [dots]="true" 
+        [autoplayInterval]="4000" 
+        [transitionDuration]="2000" 
+        [cellsToShow]="1" 
+        [borderRadius]="15" 
+        [arrowsTheme]="'dark'"
+        >
 
+    </carousel>
+
+</div>

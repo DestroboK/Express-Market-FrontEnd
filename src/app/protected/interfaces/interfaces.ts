@@ -7,8 +7,14 @@ export interface DataResponse{
 }
 
 export interface Categoria{
-    _id: string;
     name: string;
-    Url: string;
-    __v: number;
+}
+export interface Producto{
+    imagen: string;
+    rating: number;
+    ratings: number[];
+    name: string;
+    precio: number;
+    cantidad: number;
+    categoria: Categoria[];
 }

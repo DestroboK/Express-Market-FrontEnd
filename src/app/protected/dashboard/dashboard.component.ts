@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Producto } from '../interfaces/interfaces';
+import { ProtectedService } from '../services/protected.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,59 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  images: any[] = []
-  responsiveOptions:any[] = [
-    {
-      breakpoint: '1024px',
-      numVisible: 5
-  },
-  {
-      breakpoint: '960px',
-      numVisible: 4
-  },
-  {
-      breakpoint: '768px',
-      numVisible: 3
-  },
-  {
-      breakpoint: '560px',
-      numVisible: 1
-  }
-];
-  data: any[] =[
-    {
-        "previewImageSrc": "https://scontent.fhex10-1.fna.fbcdn.net/v/t1.6435-9/80016866_115854856576358_7011777631070715904_n.jpg?stp=dst-jpg_p206x206&_nc_cat=100&ccb=1-7&_nc_sid=cad550&_nc_ohc=tZsITlHDYrQAX_5_tuz&_nc_ht=scontent.fhex10-1.fna&oh=00_AT_I99N1xqtRCd0LdQyrXwHG8XZzskB5A8V11mi8NsR-aw&oe=62F85395",
-        "thumbnailImageSrc": "https://scontent.fhex10-1.fna.fbcdn.net/v/t1.6435-9/80016866_115854856576358_7011777631070715904_n.jpg?stp=dst-jpg_p206x206&_nc_cat=100&ccb=1-7&_nc_sid=cad550&_nc_ohc=tZsITlHDYrQAX_5_tuz&_nc_ht=scontent.fhex10-1.fna&oh=00_AT_I99N1xqtRCd0LdQyrXwHG8XZzskB5A8V11mi8NsR-aw&oe=62F85395",
-        "alt": "Description for Image 1",
-        "title": "Title 1"
-    },
-    {
-        "previewImageSrc": "https://m.media-amazon.com/images/I/61E68WLcP2L._AC_UX522_.jpg",
-        "thumbnailImageSrc": "https://m.media-amazon.com/images/I/61E68WLcP2L._AC_UX522_.jpg",
-        "alt": "Description for Image 2",
-        "title": "Title 2"
-    },
-    {
-        "previewImageSrc": "https://m.media-amazon.com/images/I/71yJAXq-uKL._AC_UL320_.jpg",
-        "thumbnailImageSrc": "https://m.media-amazon.com/images/I/71yJAXq-uKL._AC_UL320_.jpg",
-        "alt": "Description for Image 3",
-        "title": "Title 3"
-    },
-    {
-        "previewImageSrc": "https://www.researchgate.net/publication/350065873/figure/fig5/AS:1001610025123844@1615813847982/Stability-of-the-YGYGY-and-HGHGH-nanoparticles-in-water-and-in-phosphoric-buffer-solution.png",
-        "thumbnailImageSrc": "https://www.researchgate.net/publication/350065873/figure/fig5/AS:1001610025123844@1615813847982/Stability-of-the-YGYGY-and-HGHGH-nanoparticles-in-water-and-in-phosphoric-buffer-solution.png",
-        "alt": "Description for Image 4",
-        "title": "Title 4"
-    },
-    {
-        "previewImageSrc": "https://i1.sndcdn.com/avatars-lkZn49jnqNKyyO39-Up3r1Q-t500x500.jpg",
-        "thumbnailImageSrc": "https://i1.sndcdn.com/avatars-lkZn49jnqNKyyO39-Up3r1Q-t500x500.jpg",
-        "alt": "Description for Image 5",
-        "title": "Title 5"
-    }
-    
-]
+  images: any[] = [
+    {path: 'https://i.blogs.es/8ceb02/pollo_entero/1366_2000.jpg', label:'Pollo en oferta'},
+    {path: 'https://images8.alphacoders.com/354/thumb-1920-354039.jpg'},
+    {path: 'https://p4.wallpaperbetter.com/wallpaper/665/31/674/food-bread-baking-pretzel-still-life-hd-wallpaper-preview.jpg'},
+    {path: 'https://img.freepik.com/vector-gratis/composicion-realista-electrodomesticos_1284-65307.jpg?t=st=1658782930~exp=1658783530~hmac=6b493dbb7e7b30690e1c1b837c68b4878a8c8258a6f171d7224a43d8d3a93475&w=900'},
+    {path: 'https://p4.wallpaperbetter.com/wallpaper/104/215/804/cheese-pepper-cheese-dairy-products-wallpaper-preview.jpg'},
+    {path: 'https://almomento.net/wp-content/uploads/2018/09/brilla.jpg'}
+
+    ]
+
+constructor(private protectedService: ProtectedService) { }
+get products(){
+  return this.protectedService._productos;
+ }
   ngOnInit() {
-    this.images = this.data
-  }
+}   
+
 }

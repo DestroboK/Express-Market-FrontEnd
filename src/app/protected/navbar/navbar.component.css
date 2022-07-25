@@ -12,6 +12,10 @@
     left: 30%;
     max-width: 40%;
 }
+.nav-img :hover{
+    cursor: pointer;
+
+}
 
 p-menubar > li{
     width: 100%;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProtectedService } from '../services/protected.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private protectedService: ProtectedService) { }
 
+
+  get productos(){
+    return this.protectedService._productos;
+  }
   ngOnInit(): void {
+    console.log(this.productos)
   }
 
 }

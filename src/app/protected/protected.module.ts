@@ -23,13 +23,17 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {ChipModule} from 'primeng/chip';
 import {ChipsModule} from 'primeng/chips';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {DataViewModule} from 'primeng/dataview';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { ResultsComponent } from './results/results.component';
 @NgModule({
   declarations: [
     DashboardComponent,
     ShoppingCartComponent,
     OrdersComponent,
     NavbarComponent,
-    MainComponent
+    MainComponent,
+    ResultsComponent
   ],
   imports: [
     CommonModule,
@@ -44,8 +48,11 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     ContextMenuModule,
     ButtonModule,
     GalleriaModule,
-    DropdownModule
-
+    DropdownModule,
+    OverlayPanelModule,
+    RadioButtonModule,
+    DataViewModule,
+    IvyCarouselModule
   ]
 })
 export class ProtectedModule { }

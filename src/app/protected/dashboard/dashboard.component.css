@@ -1,11 +1,14 @@
-img {
-    width:inherit;
+
+.carousel{
+    margin-top: 15px;
+    max-width: 90%;
+    z-index: -999;
 }
 
-.item {
-    border:1px solid pink;
-    width: 120px;
-    float: left;
-    margin: 3px;
-    padding: 3px;
+
+.dashboard-container{
+    height: 100%;
+    width: 100%;
+   display: flex;
+   justify-content: center;
 }
