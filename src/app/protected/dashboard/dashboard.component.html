@@ -1,9 +1,10 @@
 <div class="dashboard-container" >
+    <div class="carousel-container">
     <carousel class="carousel"
-    [height]="300"
+    [height]="500"
     [images]="images"
     [objectFit]="'cover'" 
-    [cellWidth]="'100%'"  
+
         [loop]="true" 
         [autoplay]="true"  
         [pauseOnHover]="true" 
@@ -16,5 +17,18 @@
         >
 
     </carousel>
+</div>
 
+    <p-dataView [value]="products">
+        <ng-template let-product pTemplate="listItem">
+            <div>
+                {{product.name}}
+            </div>
+        </ng-template>
+        <ng-template let-product pTemplate="gridItem">
+            <div class="col-12 md:col-3">
+                {{product.precio}}
+            </div>
+        </ng-template>
+    </p-dataView>
 </div>

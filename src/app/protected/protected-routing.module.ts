@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main/main.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ResultsComponent } from './results/results.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
     component: MainComponent,
     children:[
       {path: 'presentation', component: DashboardComponent},
+      {path: 'results', component: ResultsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'orders', component: OrdersComponent},
       {path: '**', redirectTo: 'presentation'}

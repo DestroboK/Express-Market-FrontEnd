@@ -8,7 +8,7 @@
         <div class="p-inputgroup searchbar">
             <button pButton pRipple type="button"  icon="pi pi-filter-fill"  (click)="filters.toggle($event)" ></button>
             <input type="text" pInputText [placeholder]="selectedCategories"> 
-            <button pButton pRipple type="button"   icon="pi pi-search"></button>      
+            <button pButton pRipple type="button"   icon="pi pi-search" (click)="buscar()"></button>      
         </div>
 
         <p-avatar  [label]="inicial" (click)="menu.toggle($event)" pBadge value="4" size="large" shape="circle" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"></p-avatar>

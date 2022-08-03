@@ -63,4 +63,7 @@ export class NavbarComponent implements OnInit {
 navegar(){
   this.router.navigateByUrl('/dashboard/presentation')
 }
+buscar(){
+  this.router.navigateByUrl('/dashboard/results')
+}
 }

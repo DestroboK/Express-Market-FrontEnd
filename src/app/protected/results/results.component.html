@@ -1,1 +1,39 @@
-<p>results works!</p>
+
+<p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name"
+        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between ">
+                <p-dropdown [options]="sortOptions" placeholder="Ordenar por..." (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                    <i class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Buscar por nombre"  (input)="dv.filter($any($event.target).value)">
+                    
+                </span>
+            </div>
+        </ng-template>
+        <ng-template let-product pTemplate="gridItem">
+            <div class="col-12 md:col-4">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category" *ngFor="let item of product.categoria"><p-chip [label]="item.name" styleClass="mr-2"></p-chip></span>
+                        </div>
+                        <!-- <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
+                    </div>
+                    <div class="product-grid-item-content">
+                        <img [src]="product.imagen" [alt]="product.name"/>
+                        <div class="product-name">{{product.name}}</div>
+                        <div class="product-description">{{product.descripcion}}</div>
+                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <span class="product-price">${{product.precio}}</span>
+                        <ng-container *ngIf="product.cantidad <= 10 && product.cantidad > 0"> <p-chip [label]="'¡Quedan ' + product.cantidad + '!'"  styleClass="mr-2 custom-chip-lowstock"></p-chip></ng-container>
+                        <ng-container *ngIf="product.cantidad <= 0"> <p-chip label="Agotado" styleClass="mr-2 custom-chip-nostock" ></p-chip></ng-container>
+                        <p-button icon="pi pi-shopping-cart" [disabled]="product.cantidad <= 0"></p-button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>

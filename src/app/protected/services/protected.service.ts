@@ -37,8 +37,8 @@ export class ProtectedService {
     precio: 59,
     cantidad: 5,
     categoria:[
-      {name: 'Pescados'}, 
-      {name:'Enlatados'}
+      {"name": 'Pescados'}, 
+      {"name":'Enlatados'}
     ]
 },
 {
@@ -60,7 +60,7 @@ export class ProtectedService {
   ratings: [],
   name: 'Desodorante En Gel Gillette Power Beads 295ml',
   precio: 629,
-  cantidad: 5,
+  cantidad: 0,
   categoria:[
     {name: 'Higiene'}
   ]

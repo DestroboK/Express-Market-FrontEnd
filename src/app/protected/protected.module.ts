@@ -12,7 +12,7 @@ import { ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {GMapModule} from 'primeng/gmap';
-
+import {RatingModule} from 'primeng/rating';
 import {GalleriaModule} from 'primeng/galleria';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {TabViewModule} from 'primeng/tabview';
@@ -26,6 +26,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {DataViewModule} from 'primeng/dataview';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { ResultsComponent } from './results/results.component';
+import {DialogModule} from 'primeng/dialog';
+import {PanelModule} from 'primeng/panel';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -52,7 +54,11 @@ import { ResultsComponent } from './results/results.component';
     OverlayPanelModule,
     RadioButtonModule,
     DataViewModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    RatingModule,
+    DialogModule,
+    PanelModule,
+    ChipModule
   ]
 })
 export class ProtectedModule { }

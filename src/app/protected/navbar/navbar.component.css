@@ -1,3 +1,7 @@
+p-menubar {
+    width: 100%;
+    z-index: 999;
+   }
 .separator{
     width: 100%;
     margin-right: 5%;
@@ -32,7 +36,7 @@ a.p-menubar-button{
     }
 
 }
-@media screen and (max-width:370px){
+@media screen and (max-width:400px){
     .searchbar{
         left: 40%;
     }
