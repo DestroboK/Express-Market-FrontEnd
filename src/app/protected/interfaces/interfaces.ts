@@ -12,6 +12,7 @@ export interface Categoria{
 export interface Producto{
     imagen: string;
     rating: number;
+    descripcion?: string;
     ratings: number[];
     name: string;
     precio: number;

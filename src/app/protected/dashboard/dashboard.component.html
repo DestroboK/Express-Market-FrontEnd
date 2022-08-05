@@ -19,16 +19,22 @@
     </carousel>
 </div>
 
-    <p-dataView [value]="products">
-        <ng-template let-product pTemplate="listItem">
-            <div>
-                {{product.name}}
-            </div>
-        </ng-template>
-        <ng-template let-product pTemplate="gridItem">
-            <div class="col-12 md:col-3">
-                {{product.precio}}
-            </div>
-        </ng-template>
-    </p-dataView>
+    <h1 class="title">Producto con mayor Rating</h1>
+      
+      <div class="container">
+        <li *ngFor="let producto of products">
+          <div class="card">
+              <img [src]="producto.imagen">
+              <h4>{{producto.name}}</h4>
+              <p>{{producto.descripcion}}</p>
+              <p-rating [(ngModel)]="producto.rating" [readonly]="true" [cancel]="false"></p-rating>
+              <div class="group">
+                <h2><sup>$</sup>{{producto.precio}}</h2>
+                <a href="#">Comprar</a>
+              </div>
+          </div>
+        </li>
+      </div>
+
+    
 </div>
