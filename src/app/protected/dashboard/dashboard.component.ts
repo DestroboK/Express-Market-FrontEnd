@@ -18,11 +18,12 @@ export class DashboardComponent implements OnInit {
 
     ]
 
-constructor(private protectedService: ProtectedService) { }
-get products(){
-  return this.protectedService._productos;
- }
-  ngOnInit() {
-}   
-
-}
+    constructor(private protectedService: ProtectedService) { }
+    get products(){
+      /* Sorting the products by rating and then slicing the first 6 products. */
+      return this.protectedService._productos .sort((a, b) => (a.rating > b.rating ? -1 : 1)) .slice(0, 6);
+     }
+      ngOnInit() {
+    }   
+    
+    }
