@@ -1,6 +1,15 @@
-<!-- <div *ngFor="let producto of productos" >
-    <img [src]="producto.imagen">
-    <h4>{{producto.precio}}</h4>
-</div> -->
-
-AQUI VA LO DE BRIAN
+<div class="card" *ngFor="let producto of productos" >
+    <div class="card-content">
+        <div class="card-img">
+            <img [src]="producto.imagen">
+        </div>
+        <div class="card-text">
+            <h4>{{producto.name}}</h4>
+            <strong>{{producto.precio}}</strong>
+            <p-rating [(ngModel)]="producto.rating" [readonly]="true" [cancel]="false"></p-rating>
+            <div class="icons">
+                <a href="#" class="add-cart">Quitar del carrito</a>
+            </div>
+        </div>
+    </div>
+</div>
