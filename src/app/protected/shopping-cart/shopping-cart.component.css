@@ -13,9 +13,12 @@ body{
     align-items: center;
     justify-content: center;
 }
+.shopping-cart{
+    margin: 5%;
+}
 .card{
     width: 650px;
-    height: 300px;
+    height: auto;
     background: #fff;
     box-shadow: 0 20px 60px #5177f5bd;
     padding: 20px;
@@ -38,6 +41,8 @@ body{
 /* ttttttttt */
 .card .card-text{
     display: flex;
+    flex-direction: column;
+    width: 100%;
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
@@ -52,7 +57,7 @@ body{
 }
 
 .card .add-cart{
-    margin-top: 2px;
+    margin-top: 10%;
   text-decoration: none;
   color: white;
   background-color: black;
