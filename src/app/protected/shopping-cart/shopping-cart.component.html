@@ -1,17 +1,45 @@
-<div class="shopping-cart">
-    <div class="card" *ngFor="let producto of productos" >
-        <div class="card-content">
-            <div class="card-img">
-                <img [src]="producto.imagen">
-            </div>
-            <div class="card-text">
-                <h4>{{producto.name}}</h4>
-                <strong>${{producto.precio}} RD</strong>
-                <p-rating [(ngModel)]="producto.rating" [readonly]="true" [cancel]="false"></p-rating>
 
-                    <a href="#" class="add-cart">Quitar del carrito</a>
-
+<div *ngIf="productos && productos != null && productos.length > 0 else noProd">
+    <div class="shopping-cart" (scroll)="true">
+        <div class="products">
+            <div class="card" *ngFor="let producto of productos" >
+                <div class="card-content">
+                    <div class="card-img">
+                        <img [src]="producto.imagen">
+                    </div>
+                    <div class="card-text">
+                        <h4>{{producto.name}}</h4>
+                        <strong>${{producto.precio}} RD</strong>
+                        <p-rating [(ngModel)]="producto.rating" [readonly]="true" [cancel]="false"></p-rating>
+        
+                            <a href="#" class="add-cart">Quitar del carrito</a>
+        
+                    </div>
+                </div>
             </div>
         </div>
+    
+        <div class="total">
+            <h2>Resumen de compra</h2>
+            <p-table [virtualScroll]="true" [scrollable]="true" scrollHeight="290px" [value]="productos" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+    
+                        <td>{{product.name}}</td>
+                        <td>{{product.precio}}RD$</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <button pButton pRipple type="button" label="Comprar" class="p-button-raised p-button-success "s></button>
+        </div>
+    
     </div>
+    
 </div>
+<ng-template #noProd><div class="noProd"><h1 > Tu carrito esta vacio</h1></div></ng-template>

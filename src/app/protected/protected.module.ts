@@ -28,6 +28,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { ResultsComponent } from './results/results.component';
 import {DialogModule} from 'primeng/dialog';
 import {PanelModule} from 'primeng/panel';
+import {TableModule} from 'primeng/table';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -58,7 +59,8 @@ import {PanelModule} from 'primeng/panel';
     RatingModule,
     DialogModule,
     PanelModule,
-    ChipModule
+    ChipModule,
+    TableModule
   ]
 })
 export class ProtectedModule { }

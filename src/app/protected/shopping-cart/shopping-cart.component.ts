@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
 import { ProtectedService } from '../services/protected.service';
 
 @Component({
@@ -8,14 +9,15 @@ import { ProtectedService } from '../services/protected.service';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor(private protectedService: ProtectedService) { }
+  constructor(private protectedService: ProtectedService, private primengConfig: PrimeNGConfig) { }
 
 
   get productos(){
     return this.protectedService._productos;
   }
   ngOnInit(): void {
-    console.log(this.productos)
+    console.log(this.productos);
+    this.primengConfig.ripple = true;
   }
 
 }
