@@ -29,6 +29,10 @@ import { ResultsComponent } from './results/results.component';
 import {DialogModule} from 'primeng/dialog';
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
+import {AccordionModule} from 'primeng/accordion';
+import {BlockUIModule} from 'primeng/blockui';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {ToastModule} from 'primeng/toast';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -60,7 +64,11 @@ import {TableModule} from 'primeng/table';
     DialogModule,
     PanelModule,
     ChipModule,
-    TableModule
+    TableModule,
+    AccordionModule,
+    BlockUIModule,
+    InputNumberModule,
+    ToastModule
   ]
 })
 export class ProtectedModule { }

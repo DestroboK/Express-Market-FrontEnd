@@ -7,7 +7,7 @@
             
         <div class="p-inputgroup searchbar">
             <button pButton pRipple type="button"  icon="pi pi-filter-fill"  (click)="filters.toggle($event)" ></button>
-            <input type="text" pInputText placeholder="Buscar productos..."> 
+            <input type="text" [(ngModel)]="query_name" pInputText placeholder="Buscar productos..."> 
             <button pButton pRipple type="button"   icon="pi pi-search" (click)="buscar()"></button>      
         </div>
 

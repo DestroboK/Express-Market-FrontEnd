@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
   overlays!: any[];
   value3: string ="Hello";
   inicial:string = Array.from(this.usuario.name!)[0]
-  
-  selectedCategories: string[] = [];
+  query_name: string = '';
+  selectedCategories!: string;
   constructor(private authService: AuthService, private protectedService: ProtectedService, private router: Router){}
   ngOnInit() {
       this.items = [
@@ -52,6 +52,7 @@ export class NavbarComponent implements OnInit {
           routerLink: ['/auth/login']
           
       }]
+        this.protectedService.obtenerCategorias();
   }
 
   get usuario(){
@@ -63,7 +64,9 @@ export class NavbarComponent implements OnInit {
 navegar(){
   this.router.navigateByUrl('/dashboard/presentation')
 }
-buscar(){
-  this.router.navigateByUrl('/dashboard/results')
+  buscar(){
+  this.protectedService.buscarProductos(this.selectedCategories, this.query_name);
+
+  this.router.navigate(['/dashboard/results'])
 }
 }

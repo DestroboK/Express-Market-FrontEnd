@@ -1,20 +1,23 @@
 
+<p-toast></p-toast>
 <div *ngIf="productos && productos != null && productos.length > 0 else noProd">
     <div class="shopping-cart" (scroll)="true">
         <div class="products">
             <div class="card" *ngFor="let producto of productos" >
                 <div class="card-content">
                     <div class="card-img">
-                        <img [src]="producto.imagen">
+                        <img [src]="producto.productoID.imagenes[0]">
                     </div>
                     <div class="card-text">
-                        <h4>{{producto.name}}</h4>
-                        <strong>${{producto.precio}} RD</strong>
-                        <p-rating [(ngModel)]="producto.rating" [readonly]="true" [cancel]="false"></p-rating>
+                        <h4>{{producto.productoID.name}}</h4>
+                        <strong>${{producto.productoID.precio}} RD</strong>
+                        <strong>Cantidad: {{producto.cantidad}} </strong>
+                        <div *ngIf="producto.cantidad > 1">
+                            <strong>Subtotal: ${{producto.cantidad * producto.productoID.precio}}RD </strong>
+                        </div>
         
-                            <a href="#" class="add-cart">Quitar del carrito</a>
-        
-                    </div>
+                            <a (click)="quitarAlCarrito(producto._id)" class="add-cart">Quitar del carrito</a>
+                        </div>
                 </div>
             </div>
         </div>
@@ -26,16 +29,19 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Precio</th>
+                        <th>Cantidad</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr>
     
-                        <td>{{product.name}}</td>
-                        <td>{{product.precio}}RD$</td>
+                        <td>{{product.productoID.name}}</td>
+                        <td>${{product.productoID.precio}}RD</td>
+                        <td>{{product.cantidad}}</td>
                     </tr>
                 </ng-template>
             </p-table>
+            <h2>Total: ${{total}}RD</h2>
             <button pButton pRipple type="button" label="Comprar" class="p-button-raised p-button-success "s></button>
         </div>
     

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../interfaces/interfaces';
 import { ProtectedService } from '../services/protected.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [MessageService]
 })
 export class DashboardComponent implements OnInit {
   images: any[] = [
@@ -18,12 +20,27 @@ export class DashboardComponent implements OnInit {
 
     ]
 
-    constructor(private protectedService: ProtectedService) { }
-    get products(){
-      /* Sorting the products by rating and then slicing the first 6 products. */
-      return this.protectedService._productos .sort((a, b) => (a.rating > b.rating ? -1 : 1)) .slice(0, 6);
-     }
-      ngOnInit() {
-    }   
+    constructor(private protectedService: ProtectedService,private messageService: MessageService) { }
+    
+    products: Producto[] = []
+    blockUI: boolean = false;
+    //.sort((a, b) => (a.rating > b.rating ? -1 : 1)) .slice(0, 6)
+    cantProd: number = 1;
+    ngOnInit() {
+      this.cargar()
+    }  
+    async cargar(){
+      this.blockUI = true
+      this.protectedService.obtenerProductos();
+      this.protectedService.obtenerCarrito();
+      await new Promise(f => setTimeout(f, 1200));
+      this.products = this.protectedService._productos;
+      this.products.sort((a, b) => (a.rating > b.rating ? -1 : 1)) .slice(0, 6)
+      this.blockUI = false;
+    }
+    agregarAlCarrito(cantidad:number, productoID: string){
+      this.protectedService.agregarCarrito(productoID,cantidad);
+      this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item agregado satisfactoriamente.'});
+    }
     
     }

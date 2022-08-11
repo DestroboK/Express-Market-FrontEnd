@@ -1,3 +1,6 @@
+<p-toast></p-toast>
+<p-blockUI [blocked]="blockUI"></p-blockUI>
+<div *ngIf="products && products != null && products.length > 0 else noProd">
 <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="name"
         [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
         <ng-template pTemplate="header">
@@ -16,12 +19,12 @@
                     <div class="product-grid-item-top">
                         <div>
                             <i class="pi pi-tag product-category-icon"></i>
-                            <span class="product-category" *ngFor="let item of product.categoria"><p-chip [label]="item.name" styleClass="mr-2"></p-chip></span>
+                            <span class="product-category" ><p-chip [label]="product.categoria.name" styleClass="mr-2"></p-chip></span>
                         </div>
                         <!-- <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
                     </div>
                     <div class="product-grid-item-content">
-                        <img [src]="product.imagen" [alt]="product.name"/>
+                        <img [src]="product.imagenes[0]" [alt]="product.name"/>
                         <div class="product-name">{{product.name}}</div>
                         <div class="product-description">{{product.descripcion}}</div>
                         <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
@@ -30,9 +33,22 @@
                         <span class="product-price">${{product.precio}}</span>
                         <ng-container *ngIf="product.cantidad <= 10 && product.cantidad > 0"> <p-chip [label]="'¡Quedan ' + product.cantidad + '!'"  styleClass="mr-2 custom-chip-lowstock"></p-chip></ng-container>
                         <ng-container *ngIf="product.cantidad <= 0"> <p-chip label="Agotado" styleClass="mr-2 custom-chip-nostock" ></p-chip></ng-container>
-                        <p-button icon="pi pi-shopping-cart" [disabled]="product.cantidad <= 0"></p-button>
+                        <p-button icon="pi pi-shopping-cart" [disabled]="product.cantidad <= 0" (click)="agregar.toggle($event)"></p-button>
                     </div>
                 </div>
             </div>
+            <p-overlayPanel #agregar [showCloseIcon]="true" >
+                <div class="selectCant">
+                    <label for="vertical" style="display: block">¿Cuántas unidades desea añadir?</label>
+                    <p-inputNumber [(ngModel)]="cantProd" [min]="1" [max]="5" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                    </p-inputNumber>
+
+                <button pButton pRipple type="button" label="Agregar al carrito" class="p-button-rounded p-button-info" (click)="agregarAlCarrito(cantProd, product._id)"></button>
+            </div>
+            </p-overlayPanel>
+           
         </ng-template>
     </p-dataView>
+</div>
+<ng-template #noProd><div class="noProd"><h1 > No encontramos productos con ese criterio...</h1></div></ng-template>
