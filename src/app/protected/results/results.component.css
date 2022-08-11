@@ -69,8 +69,8 @@
     justify-content: space-between;
 }
 :host ::ng-deep .product-grid-item img {
-    width: 75%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    width: auto;
+    height: 220px;
     margin: 2rem 0;
 }
 :host ::ng-deep .product-grid-item .product-grid-item-content {
@@ -112,4 +112,28 @@
         align-items: center;
         width: 100%;
    }
+}
+
+.noProd {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: table;
+ }
+.noProd >h1{
+   display: table-cell;
+   vertical-align: middle;
+}
+.selectCant{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+.selectCant > *{
+    margin-bottom: 5%;
 }

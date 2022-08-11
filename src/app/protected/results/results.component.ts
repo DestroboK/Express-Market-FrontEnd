@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem, PrimeNGConfig } from 'primeng/api';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SelectItem, PrimeNGConfig, MessageService } from 'primeng/api';
 import { Producto } from '../interfaces/interfaces';
 import { ProtectedService } from '../services/protected.service';
-
+import {switchMap} from 'rxjs/operators'
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
-  styleUrls: ['./results.component.css']
+  styleUrls: ['./results.component.css'],
+  providers: [MessageService]
 })
 export class ResultsComponent implements OnInit {
 
-  products!: Producto[];
+  get products(){
+    return this.protectedService._productos_filtrados;
+  }
 
   sortOptions: SelectItem[] = [
     {label: 'Precio: Mayor a Menor', value: '!precio'},
@@ -22,11 +26,21 @@ export class ResultsComponent implements OnInit {
   sortOrder!: number;
 
   sortField!: string;
+  blockUI: boolean = false;
+  cantProd: number = 1;
+  constructor(private protectedService: ProtectedService,private primengConfig: PrimeNGConfig, private route: ActivatedRoute, private router: Router,private messageService: MessageService) { 
+  
+  }
+    async cargar(){
 
-  constructor(private protectedService: ProtectedService, private primengConfig: PrimeNGConfig) { }
-
+      this.blockUI = true
+      this.protectedService.obtenerCarrito();
+      await new Promise(f => setTimeout(f, 1000));
+      this.blockUI = false;
+    }
   ngOnInit() {
-     this.products = this.protectedService._productos;
+     this.cargar();
+     
      this.primengConfig.ripple = true;
   }
   
@@ -41,5 +55,11 @@ export class ResultsComponent implements OnInit {
           this.sortOrder = 1;
           this.sortField = value;
       }
+  }
+
+ agregarAlCarrito(cantidad:number, productoID: string,){
+    this.protectedService.agregarCarrito(productoID,cantidad);
+    this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item agregado satisfactoriamente.'});
+  
   }
 }

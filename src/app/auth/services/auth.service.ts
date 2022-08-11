@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment'
 import { AuthResponse, Usuario} from '../interfaces/interfaces';
 import { of, tap, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ProtectedService } from '../../protected/services/protected.service';
 @Injectable({
   providedIn: 'root'
 })

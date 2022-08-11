@@ -26,13 +26,13 @@ constructor(private fb: UntypedFormBuilder,
 
 login(){
   const {email, password } = this.miFormulario.value;
+  this.miFormulario.controls['email'].setErrors({'incorrect': true})
+  this.miFormulario.invalid == true;
   this.authService.login(email, password)
   .subscribe(ok=>{
     console.log(ok);
     if(ok === true){
       this.messageService.add({severity:'success', summary: 'Ok', detail: 'Inicio de sesion satisfactorio'});
-      this.miFormulario.controls['email'].setErrors({'incorrect': true})
-      this.miFormulario.invalid == true;
       new Promise(resolve => {
         setTimeout(() => {
           this.router.navigateByUrl('/dashboard')
@@ -41,6 +41,7 @@ login(){
      
       
     } else {
+      this.miFormulario.invalid == false;
       this.messageService.add({severity:'error', summary: 'Error', detail: ok});
     }
   })
