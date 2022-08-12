@@ -17,6 +17,18 @@ export interface Carrito{
 }
 
 
+export interface Pedido{
+    Productos: ItemCarrito[];
+    _id: string;
+    userID: string;
+    Estado: string;
+    Fecha: string;
+    Direccion_entrega:{}
+    voted: boolean;
+    __v: number;
+}
+
+
 
 export interface Producto{
     _id: string;

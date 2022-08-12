@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment'
 
 import { of, tap, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { DataResponse, Categoria, Producto, Carrito } from '../interfaces/interfaces';
+import { DataResponse, Categoria, Producto, Carrito, Pedido } from '../interfaces/interfaces';
 import { AuthResponse } from '../../auth/interfaces/interfaces';
 import { AuthService } from '../../auth/services/auth.service';
 @Injectable({
@@ -20,6 +20,7 @@ export class ProtectedService {
   ];
   public _carrito: any =[];
   public _productos_filtrados: Producto[]= []
+  public _pedidos: Pedido[]= []
   public _productos: Producto[]= [
 //     {
 //       imagen: 'https://almacen.do/wp-content/uploads/2018/07/Leche-Evaporada-Nestle-Carnation-315-g-Front.jpg',
@@ -192,6 +193,19 @@ export class ProtectedService {
   }
 
 
+  public crearPedido(Direccion_entrega: string){
+    
+    const url = `${ environment.baseUrl}/pedidos/new`;
+    const body = {Direccion_entrega, CarritoID: this._carrito._id};
+    return this.http.post<any>(url,body)
+    .subscribe((response)=>{
+        console.log(response);
+                this.obtenerCarrito();
+      }
+    ),
+    catchError(err=> of(err.error.msg));
+  }
+
   public quitarCarrito(ItemCarritoID: string){
     
     const url = `${ environment.baseUrl}/carrito/quitarcarrito`;
@@ -199,6 +213,54 @@ export class ProtectedService {
     return this.http.post<any>(url,body)
     .subscribe((response)=>{
       this.obtenerCarrito();
+      }
+    ),
+    catchError(err=> of(err.error.msg));
+  }
+
+  public obtenerPedidos(){
+    
+    const url = `${ environment.baseUrl}/pedidos/get`;
+    const headers = new HttpHeaders()
+    .set('userID', this.authService.usuario.uid || '');
+    return this.http.get<Pedido[]>(url,{headers: headers})
+    .subscribe((response: Pedido[])=>{
+       this._pedidos = response;
+      }
+    ),
+    catchError(err=> of(err.error.msg));
+  }
+  public cancelarPedido(PedidoID: string){
+    
+    const url = `${ environment.baseUrl}/pedidos/cancelar`;
+    const body = {PedidoID};
+    return this.http.post<any>(url,body)
+    .subscribe((response)=>{
+      this.obtenerPedidos();
+      }
+    ),
+    catchError(err=> of(err.error.msg));
+  }
+
+  public actualizarPedido(PedidoID: string){
+    
+    const url = `${ environment.baseUrl}/pedidos/actualizar`;
+    const body = {PedidoID};
+    return this.http.post<any>(url,body)
+    .subscribe((response)=>{
+      this.obtenerPedidos();
+      }
+    ),
+    catchError(err=> of(err.error.msg));
+  }
+
+  public votar(  _id:string, rating:number, ItemCarritoID:string){
+    
+    const url = `${ environment.baseUrl}/producto/vote`;
+    const body = {_id, rating, ItemCarritoID};
+    return this.http.post<any>(url,body)
+    .subscribe((response)=>{
+        this.obtenerPedidos();
       }
     ),
     catchError(err=> of(err.error.msg));

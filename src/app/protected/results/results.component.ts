@@ -57,8 +57,9 @@ export class ResultsComponent implements OnInit {
       }
   }
 
- agregarAlCarrito(cantidad:number, productoID: string,){
+ agregarAlCarrito(cantidad:number, productoID: string,event:any, element:any){
     this.protectedService.agregarCarrito(productoID,cantidad);
+    element.hide(event);
     this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item agregado satisfactoriamente.'});
   
   }

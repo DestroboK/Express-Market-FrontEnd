@@ -34,12 +34,13 @@ export class DashboardComponent implements OnInit {
       this.protectedService.obtenerProductos();
       this.protectedService.obtenerCarrito();
       await new Promise(f => setTimeout(f, 1200));
-      this.products = this.protectedService._productos;
-      this.products.sort((a, b) => (a.rating > b.rating ? -1 : 1)) .slice(0, 6)
+      this.products = this.protectedService._productos.sort((a, b) => (a.rating > b.rating ? -1 : 1)).slice(0, 6);
       this.blockUI = false;
     }
-    agregarAlCarrito(cantidad:number, productoID: string){
+    agregarAlCarrito(cantidad:number, productoID: string,event:any, element:any){
       this.protectedService.agregarCarrito(productoID,cantidad);
+      element.hide(event);
+      this.products.sort((a, b) => (a.rating > b.rating ? -1 : 1)).slice(0, 6)
       this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item agregado satisfactoriamente.'});
     }
     

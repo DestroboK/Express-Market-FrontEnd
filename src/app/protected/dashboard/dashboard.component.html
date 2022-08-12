@@ -36,14 +36,14 @@
                 <p-button icon="pi pi-shopping-cart" [disabled]="producto.cantidad <= 0" (click)="agregar.toggle($event)"></p-button>
               </div>
           </div>
-          <p-overlayPanel #agregar [showCloseIcon]="true" >
+          <p-overlayPanel #agregar [showCloseIcon]="true" #op1>
             <div class="selectCant">
                 <label for="vertical" style="display: block">¿Cuántas unidades desea añadir?</label>
                 <p-inputNumber [(ngModel)]="cantProd" [min]="1" [max]="5" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
                 decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
                 </p-inputNumber>
 
-            <button pButton pRipple type="button" label="Agregar al carrito" class="p-button-rounded p-button-info" (click)="agregarAlCarrito(cantProd, producto._id)"></button>
+            <button pButton pRipple type="button" label="Agregar al carrito" class="p-button-rounded p-button-info" (click)="agregarAlCarrito(cantProd, producto._id,$event,op1)"></button>
         </div>
         </p-overlayPanel>
         </li>

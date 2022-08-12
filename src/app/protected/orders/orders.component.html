@@ -1,12 +1,65 @@
 
-<p-accordion>
-    <p-accordionTab header="Header 1">
-       Content 1
-    </p-accordionTab>
-    <p-accordionTab header="Header 2">
-        Content 2
-    </p-accordionTab>
-    <p-accordionTab header="Header 3">
-        Content 3    
-    </p-accordionTab>
-</p-accordion>
+<p-toast></p-toast>
+<p-blockUI [blocked]="blockUI"></p-blockUI>
+<div *ngIf="pedidos && pedidos != null && pedidos.length > 0 else noProd">
+    <p-accordion>       
+    <div  *ngFor="let pedido of pedidos;" >
+        <p-accordionTab style="text-align: center;" [header]="pedido.Fecha + ' - ' + pedido.Estado ">
+            <h1>Resumen de compra</h1>
+            <p-table [virtualScroll]="true" [scrollable]="true" scrollHeight="290px" [value]="pedido.Productos" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Productos</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th *ngIf="pedido.Estado === 'Finalizado'">Votar</th>
+
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td><img class="tabla-img" [src]="product.productoID.imagenes[0]"></td>
+                        <td>{{product.productoID.name}}</td>
+                        <td>${{product.productoID.precio}}RD</td>
+                        <td>{{product.cantidad}}</td>
+                        <td *ngIf="pedido.Estado === 'Finalizado' && product.voted === true"><button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-help p-button-text"></button></td>
+                        <td *ngIf="pedido.Estado === 'Finalizado' && product.voted === false"><button pButton pRipple type="button" icon="pi pi-star-fill" class="p-button-rounded p-button-primary p-button-rounded" label="Votar" (click)="vote.toggle($event)"></button></td>     
+                        <p-overlayPanel #vote [dismissable]="true" #op>
+                            <div class="voto-detalles">
+                                <h1>Evalua tu compra</h1>
+                                <h6>{{product.productoID.name}}</h6>
+                                <h6>${{product.productoID.precio}}RD</h6>
+
+                            <p-rating [(ngModel)]="voto" [cancel]="false"></p-rating>
+                            <p-button icon="pi pi-check" [disabled]="voto < 1 || voto > 5" (onClick)="votar(product._id,product.productoID._id, voto,$event,op)" label="Votar" styleClass="p-button-text"></p-button>
+                            </div>
+                        </p-overlayPanel>
+                    </tr>
+                </ng-template>
+                
+            </p-table>
+            
+        <div class="flex flex-column align-items-center justify-content-center">
+            <h2>Direccion de entrega: {{pedido.Direccion_entrega}}</h2>
+            <div *ngIf="pedido.Estado != 'Finalizado'">
+                
+            <p-confirmPopup></p-confirmPopup>
+            <div class="m-2">
+                <p-button icon="pi pi-times" (onClick)="cancelar(pedido._id,$event)" label="Cancelar"   styleClass="p-button-rounded p-button-danger p-button-lg ml-3"></p-button>
+                <p-button icon="pi pi-forward" (onClick)="actualizar(pedido._id,$event)" label="Avanzar"   styleClass="p-button-rounded p-button-warning p-button-lg"></p-button>
+            </div>
+            </div>
+        </div>
+        </p-accordionTab> 
+            </div>
+    </p-accordion> 
+    
+        
+</div>
+    
+
+    
+
+<ng-template #noProd><div class="noProd"><h1 > No hay pedidos...</h1></div></ng-template>

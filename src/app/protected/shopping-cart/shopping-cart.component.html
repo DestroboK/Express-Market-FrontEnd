@@ -1,5 +1,6 @@
 
 <p-toast></p-toast>
+<p-blockUI [blocked]="blockUI"></p-blockUI>
 <div *ngIf="productos && productos != null && productos.length > 0 else noProd">
     <div class="shopping-cart" (scroll)="true">
         <div class="products">
@@ -42,7 +43,34 @@
                 </ng-template>
             </p-table>
             <h2>Total: ${{total}}RD</h2>
-            <button pButton pRipple type="button" label="Comprar" class="p-button-raised p-button-success "s></button>
+            <button pButton pRipple type="button"  (click)="showModalDialog()" label="Comprar" class="p-button-raised p-button-success "s></button>
+           
+            <p-dialog style="z-index: 10;" header="Proceso de pago" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+                [draggable]="false" [resizable]="false">
+                <div class="flex flex-column align-items-center justify-content-center text-center m-2">  
+                    <label for="cc" style="display:block;margin-bottom:4px">Tarjeta de credito</label>
+                    <input id="cc" type="text" name="cc" [(ngModel)]="cc" pInputText pKeyFilter="/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/" pValidateOnly="true" placeholder="1234-1234-1234-1234" style="margin-right: .5em">
+
+
+                    <label for="cv" style="display:block;margin-bottom:4px">CSV</label>
+                    <input id="cv" type="text" name="cv" [(ngModel)]="cv" pInputText pKeyFilter="/[0-9]{3}$/" pValidateOnly="true" placeholder="123" style="margin-right: .5em">
+
+
+                        <label for="withoutgrouping">Fecha de expiracion</label>
+                        <input pInputText pKeyFilter="/[0-9]{4}$/" pValidateOnly="true" placeholder="MM/AA" style="margin-right: .5em">
+
+
+
+
+
+                        <label for="dir" style="display:blocks;margin-bottom:4px">Direccion de entrega</label>
+                        <input id="dir" type="text" name="dir" [(ngModel)]="direccion" pInputText pKeyFilter="/[0-9]{4}$/" pValidateOnly="true"  style="margin-right: .5em">
+
+                        </div>
+                    <ng-template pTemplate="footer">
+                    <p-button icon="pi pi-check" [disabled]="direccion.length === 0" (onClick)="pedir(direccion)" label="Confirmar pago" styleClass="p-button-text"></p-button>
+                    </ng-template>
+            </p-dialog>
         </div>
     
     </div>

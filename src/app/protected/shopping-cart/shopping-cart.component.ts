@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { ProtectedService } from '../services/protected.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,9 +13,19 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(private protectedService: ProtectedService
     , private primengConfig: PrimeNGConfig
-    ,private messageService: MessageService) { }
+    ,private messageService: MessageService,
+    private router: Router) { }
   blockUI:boolean = false;
   total: number = 0;
+  CSV: number = 0;
+  displayModal: boolean = false;
+  cc: string ="";
+  cv: string ="";
+  direccion: string ="";
+  showModalDialog() {
+    this.displayModal = true;
+}
+
   get productos(){
     return this.protectedService._carrito.Productos;
   }
@@ -38,5 +49,11 @@ export class ShoppingCartComponent implements OnInit {
     this.total = 0;
     this.productos;
     this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item removido satisfactoriamente.'});
+  }
+
+  pedir(direccion: string){
+    this.protectedService.crearPedido(direccion);
+    this.displayModal = false;
+    this.router.navigate(['/dashboard/orders'])
   }
 }

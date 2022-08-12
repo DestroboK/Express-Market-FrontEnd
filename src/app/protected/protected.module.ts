@@ -33,6 +33,9 @@ import {AccordionModule} from 'primeng/accordion';
 import {BlockUIModule} from 'primeng/blockui';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {ToastModule} from 'primeng/toast';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {ProgressBarModule} from 'primeng/progressbar';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -68,7 +71,10 @@ import {ToastModule} from 'primeng/toast';
     AccordionModule,
     BlockUIModule,
     InputNumberModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    ConfirmPopupModule,
+    ProgressBarModule
   ]
 })
 export class ProtectedModule { }
