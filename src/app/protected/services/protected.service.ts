@@ -185,11 +185,13 @@ export class ProtectedService {
     const url = `${ environment.baseUrl}/carrito/ponercarrito`;
     const body = {productoID, cantidad, carritoID: this._carrito._id};
     return this.http.post<any>(url,body)
-    .subscribe((response)=>{
+    .pipe((
+      tap(resp=>{ })
+  
     
-      }
     ),
-    catchError(err=> of(err.error.msg));
+    catchError(err=> of(err.error.msg)));
+
   }
 
 
@@ -199,8 +201,8 @@ export class ProtectedService {
     const body = {Direccion_entrega, CarritoID: this._carrito._id};
     return this.http.post<any>(url,body)
     .subscribe((response)=>{
-        console.log(response);
                 this.obtenerCarrito();
+                this.obtenerPedidos();
       }
     ),
     catchError(err=> of(err.error.msg));
@@ -218,6 +220,10 @@ export class ProtectedService {
     catchError(err=> of(err.error.msg));
   }
 
+/**
+ * It's a function that returns an observable of type Pedido[], which is an array of Pedido objects.
+ * @returns The response is an array of Pedido objects.
+ */
   public obtenerPedidos(){
     
     const url = `${ environment.baseUrl}/pedidos/get`;
@@ -226,6 +232,7 @@ export class ProtectedService {
     return this.http.get<Pedido[]>(url,{headers: headers})
     .subscribe((response: Pedido[])=>{
        this._pedidos = response;
+       this._pedidos.reverse();
       }
     ),
     catchError(err=> of(err.error.msg));
@@ -242,6 +249,11 @@ export class ProtectedService {
     catchError(err=> of(err.error.msg));
   }
 
+/**
+ * It's a function that updates a PedidoID in the database.
+ * @param {string} PedidoID - string
+ * @returns The response from the server.
+ */
   public actualizarPedido(PedidoID: string){
     
     const url = `${ environment.baseUrl}/pedidos/actualizar`;

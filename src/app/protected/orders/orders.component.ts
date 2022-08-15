@@ -14,7 +14,7 @@ export class OrdersComponent implements OnInit {
   voto:number = 0;
   constructor(private protectedService: ProtectedService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
   get pedidos(){
-    return this.protectedService._pedidos;
+    return this.protectedService._pedidos
   }
   ngOnInit(): void {
     this.cargar()

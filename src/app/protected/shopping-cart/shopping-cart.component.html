@@ -11,10 +11,10 @@
                     </div>
                     <div class="card-text">
                         <h4>{{producto.productoID.name}}</h4>
-                        <strong>${{producto.productoID.precio}} RD</strong>
+                        <strong>${{producto.productoID.precio| number: '2.'}} RD</strong>
                         <strong>Cantidad: {{producto.cantidad}} </strong>
                         <div *ngIf="producto.cantidad > 1">
-                            <strong>Subtotal: ${{producto.cantidad * producto.productoID.precio}}RD </strong>
+                            <strong>Subtotal: ${{producto.cantidad * producto.productoID.precio| number: '2.'}}RD </strong>
                         </div>
         
                             <a (click)="quitarAlCarrito(producto._id)" class="add-cart">Quitar del carrito</a>
@@ -37,7 +37,7 @@
                     <tr>
     
                         <td>{{product.productoID.name}}</td>
-                        <td>${{product.productoID.precio}}RD</td>
+                        <td>${{product.productoID.precio| number: '2.'}}RD</td>
                         <td>{{product.cantidad}}</td>
                     </tr>
                 </ng-template>

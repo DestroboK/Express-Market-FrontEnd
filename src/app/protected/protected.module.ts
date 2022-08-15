@@ -35,6 +35,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {ProgressBarModule} from 'primeng/progressbar';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
     OrdersComponent,
     NavbarComponent,
     MainComponent,
-    ResultsComponent
+    ResultsComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

@@ -17,9 +17,9 @@
             <div class="col-12 md:col-4">
                 <div class="product-grid-item card">
                     <div class="product-grid-item-top">
-                        <div>
+                        <div class="categories">
                             <i class="pi pi-tag product-category-icon"></i>
-                            <span class="product-category" ><p-chip [label]="product.categoria.name" styleClass="mr-2"></p-chip></span>
+                            <span class="product-category" ><div *ngFor="let categoria of product.categoria"><p-chip [label]="categoria.name"></p-chip></div></span>
                         </div>
                         <!-- <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
                     </div>
@@ -30,22 +30,30 @@
                         <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
                     </div>
                     <div class="product-grid-item-bottom">
-                        <span class="product-price">${{product.precio}}</span>
+                        <span class="product-price">${{product.precio | number: '2.'}}RD</span>
                         <ng-container *ngIf="product.cantidad <= 10 && product.cantidad > 0"> <p-chip [label]="'¡Quedan ' + product.cantidad + '!'"  styleClass="mr-2 custom-chip-lowstock"></p-chip></ng-container>
                         <ng-container *ngIf="product.cantidad <= 0"> <p-chip label="Agotado" styleClass="mr-2 custom-chip-nostock" ></p-chip></ng-container>
+                        <div *ngIf="product.cantidad > 0">
                         <p-button icon="pi pi-shopping-cart" [disabled]="product.cantidad <= 0" (click)="agregar.toggle($event)"></p-button>
+                        </div>
                     </div>
                 </div>
             </div>
             <p-overlayPanel #agregar [showCloseIcon]="true" #op2>
                 <div class="selectCant">
+                    <div *ngIf="product.cantidad > 5 else limited" >
                     <label for="vertical" style="display: block">¿Cuántas unidades desea añadir?</label>
                     <p-inputNumber [(ngModel)]="cantProd" [min]="1" [max]="5" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
-                    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
-                    </p-inputNumber>
-
-                <button pButton pRipple type="button" label="Agregar al carrito" class="p-button-rounded p-button-info" (click)="agregarAlCarrito(cantProd, product._id,$event,op2)"></button>
-            </div>
+                    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                    </div>
+                    <ng-template #limited>
+                        <label for="vertical" style="display: block">¿Cuántas unidades desea añadir?</label>
+                    <p-inputNumber [(ngModel)]="cantProd" [min]="1" [max]="product.cantidad" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+                    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                    </ng-template>
+                    
+                    <button pButton pRipple type="button" label="Agregar al carrito" class="p-button-rounded p-button-info" (click)="agregarAlCarrito(cantProd,$event,op2,product)"></button>
+                </div>
             </p-overlayPanel>
            
         </ng-template>

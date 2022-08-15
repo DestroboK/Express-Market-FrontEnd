@@ -32,19 +32,29 @@
               <p>{{producto.descripcion}}</p>
               <p-rating [(ngModel)]="producto.rating" [readonly]="true" [cancel]="false"></p-rating>
               <div class="group">
-                <h2><sup>$</sup>{{producto.precio}}</h2>
-                <p-button icon="pi pi-shopping-cart" [disabled]="producto.cantidad <= 0" (click)="agregar.toggle($event)"></p-button>
+                <h2><sup>$</sup>{{producto.precio | number: '2.'}}RD</h2>
+                <ng-container *ngIf="producto.cantidad <= 10 && producto.cantidad > 0"> <p-chip [label]="'¡Quedan ' + producto.cantidad + '!'"  styleClass="mr-2 custom-chip-lowstock"></p-chip></ng-container>
+                <ng-container *ngIf="producto.cantidad <= 0"> <p-chip label="Agotado" styleClass="mr-2 custom-chip-nostock" ></p-chip></ng-container>
+                <div *ngIf="producto.cantidad > 0">
+                <p-button icon="pi pi-shopping-cart" [disabled]="producto.cantidad <= 0" (click)="op2.toggle($event)"></p-button>
+                </div>
               </div>
           </div>
-          <p-overlayPanel #agregar [showCloseIcon]="true" #op1>
+          <p-overlayPanel #agregar [showCloseIcon]="true"  #op2>
             <div class="selectCant">
-                <label for="vertical" style="display: block">¿Cuántas unidades desea añadir?</label>
-                <p-inputNumber [(ngModel)]="cantProd" [min]="1" [max]="5" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
-                decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
-                </p-inputNumber>
-
-            <button pButton pRipple type="button" label="Agregar al carrito" class="p-button-rounded p-button-info" (click)="agregarAlCarrito(cantProd, producto._id,$event,op1)"></button>
-        </div>
+              <div *ngIf="producto.cantidad > 5 else limited" >
+              <label for="vertical" style="display: block">¿Cuántas unidades desea añadir?</label>
+              <p-inputNumber [(ngModel)]="cantProd" [min]="1" [max]="5" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+              decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+              </div>
+              <ng-template #limited>
+                  <label for="vertical" style="display: block">¿Cuántas unidades desea añadir?</label>
+              <p-inputNumber [(ngModel)]="cantProd" [min]="1" [max]="producto.cantidad" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+              decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+              </ng-template>
+              
+              <button pButton pRipple type="button" label="Agregar al carrito" class="p-button-rounded p-button-info" (click)="agregarAlCarrito(cantProd,producto,$event,op2)"></button>
+          </div>
         </p-overlayPanel>
         </li>
       </div>

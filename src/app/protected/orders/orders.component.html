@@ -4,7 +4,7 @@
 <div *ngIf="pedidos && pedidos != null && pedidos.length > 0 else noProd">
     <p-accordion>       
     <div  *ngFor="let pedido of pedidos;" >
-        <p-accordionTab style="text-align: center;" [header]="pedido.Fecha + ' - ' + pedido.Estado ">
+        <p-accordionTab style="text-align: center;" [header]="pedido.Fecha.toString()">
             <h1>Resumen de compra</h1>
             <p-table [virtualScroll]="true" [scrollable]="true" scrollHeight="290px" [value]="pedido.Productos" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
@@ -22,7 +22,7 @@
                     <tr>
                         <td><img class="tabla-img" [src]="product.productoID.imagenes[0]"></td>
                         <td>{{product.productoID.name}}</td>
-                        <td>${{product.productoID.precio}}RD</td>
+                        <td>${{product.productoID.precio| number: '2.'}}RD</td>
                         <td>{{product.cantidad}}</td>
                         <td *ngIf="pedido.Estado === 'Finalizado' && product.voted === true"><button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-help p-button-text"></button></td>
                         <td *ngIf="pedido.Estado === 'Finalizado' && product.voted === false"><button pButton pRipple type="button" icon="pi pi-star-fill" class="p-button-rounded p-button-primary p-button-rounded" label="Votar" (click)="vote.toggle($event)"></button></td>     
@@ -30,7 +30,7 @@
                             <div class="voto-detalles">
                                 <h1>Evalua tu compra</h1>
                                 <h6>{{product.productoID.name}}</h6>
-                                <h6>${{product.productoID.precio}}RD</h6>
+                                <h6>${{product.productoID.precio| number: '2.'}}RD</h6>
 
                             <p-rating [(ngModel)]="voto" [cancel]="false"></p-rating>
                             <p-button icon="pi pi-check" [disabled]="voto < 1 || voto > 5" (onClick)="votar(product._id,product.productoID._id, voto,$event,op)" label="Votar" styleClass="p-button-text"></p-button>
@@ -40,7 +40,7 @@
                 </ng-template>
                 
             </p-table>
-            
+         {{pedido._id}}   
         <div class="flex flex-column align-items-center justify-content-center">
             <h2>Direccion de entrega: {{pedido.Direccion_entrega}}</h2>
             <div *ngIf="pedido.Estado != 'Finalizado'">

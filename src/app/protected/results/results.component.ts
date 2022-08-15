@@ -57,10 +57,25 @@ export class ResultsComponent implements OnInit {
       }
   }
 
- agregarAlCarrito(cantidad:number, productoID: string,event:any, element:any){
-    this.protectedService.agregarCarrito(productoID,cantidad);
-    element.hide(event);
-    this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item agregado satisfactoriamente.'});
-  
-  }
+ agregarAlCarrito(cantidad:number,event:any, element:any, Producto: Producto){
+ 
+  element.hide(event);
+  this.cantProd = 1;
+  this.protectedService.agregarCarrito(Producto._id,cantidad).subscribe(resp=>{
+
+    if(resp.ok === true){
+      Producto.cantidad = Producto.cantidad - cantidad;
+
+      this.products.sort((a, b) => (a.rating > b.rating ? -1 : 1)).slice(0, 6)
+      this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item agregado satisfactoriamente.'});
+     
+   
+    } else {
+      this.messageService.add({severity:'info', summary: 'Oops', detail: 'Alguien mas tomo los productos que quedaban...'});
+      Producto.cantidad = 0;
+    }
+  });
+
+ }
+
 }

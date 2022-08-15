@@ -22,6 +22,7 @@ export class ShoppingCartComponent implements OnInit {
   cc: string ="";
   cv: string ="";
   direccion: string ="";
+  
   showModalDialog() {
     this.displayModal = true;
 }
@@ -47,12 +48,14 @@ export class ShoppingCartComponent implements OnInit {
   async quitarAlCarrito(ItemCarritoID: string){
     await this.protectedService.quitarCarrito(ItemCarritoID);
     this.total = 0;
-    this.productos;
+    this.productos.forEach((value:any) => {
+      this.total += value.productoID.precio * value.cantidad;
+    });
     this.messageService.add({severity:'success', summary: 'Ok', detail: 'Item removido satisfactoriamente.'});
   }
 
-  pedir(direccion: string){
-    this.protectedService.crearPedido(direccion);
+  async pedir(direccion: string){
+    await this.protectedService.crearPedido(direccion);
     this.displayModal = false;
     this.router.navigate(['/dashboard/orders'])
   }

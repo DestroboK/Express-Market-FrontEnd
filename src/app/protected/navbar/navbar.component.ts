@@ -21,8 +21,7 @@ export class NavbarComponent implements OnInit {
   selectedCategories!: string;
   constructor(private authService: AuthService, private protectedService: ProtectedService, private router: Router){}
   ngOnInit() {
-      this.items = [
-          {
+          [{
               label: 'Carrito',
               icon: 'pi pi-shopping-cart',
               routerLink: ['shopping-cart'],
@@ -41,11 +40,28 @@ export class NavbarComponent implements OnInit {
         zoom: 12
     };
     this.avatarMenu= [
+
+        {
+          label: this.authService.usuario.name,
+          icon: 'pi pi-user',
+          disabled: true,
+          title: 'Usuario actual...'
+      },{
+        separator:true
+      },
       {
+         
+        label: 'Sobre nosotros',
+        icon: 'pi pi-info-circle',
+        title: 'Ver informacion sobre autores',
+      routerLink: ['/dashboard/about']
+      
+  },
+{
          
             label: 'Cerrar sesion',
             icon: 'pi pi-power-off',
-            title: 'Cerrar xd',
+            title: 'Cerrar sesion ',
             command: (event) => {
               this.authService.logout();
           },
