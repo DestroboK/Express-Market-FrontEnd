@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
   selectedCategories!: string;
   constructor(private authService: AuthService, private protectedService: ProtectedService, private router: Router){}
   ngOnInit() {
+	  this.items =
           [{
               label: 'Carrito',
               icon: 'pi pi-shopping-cart',
