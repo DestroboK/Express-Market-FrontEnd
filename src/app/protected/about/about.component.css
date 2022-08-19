@@ -1,0 +1,144 @@
+.card{
+    width: 300px;
+    height: 400px;
+    background: #000;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .25s ease;
+    backface-visibility: hidden;
+    
+}
+.card:hover {
+    transform: scale(.9);
+}
+.card:hover:after{
+    height: 280px;
+}
+.card:hover .con-text p {
+    margin-bottom: 0px;
+    opacity: 1;
+}
+.card:hover img {
+    transform: scale(1.25);
+}
+.card:hover .ul{
+    transform: translate(0);
+    opacity: 1;
+}
+.card:after{
+    width: 100%;
+    content: '';
+    left: 0px;
+    bottom: 0px;
+    height: 150px;
+    position: absolute;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    z-index: 20;
+    transition: all .25s ease;
+}
+.card img {
+    height: 100%;
+    z-index: 10;
+    transition: all .25s ease;
+}
+.card .con-text{
+    z-index: 30;
+    position: absolute;
+    bottom: 0px;
+    color: #fff;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+.card .con-text p {
+    font-size: .8rem;
+    opacity: 0;
+    color: #fff;
+    margin-bottom: -170px;
+    transition: all .25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+.card .con-text p button {
+    padding: 7px 17px;
+    border-radius: 12px;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    margin-top: 10px;
+    margin-left: auto;
+    cursor: pointer;
+    transition: all .25s ease;
+    font-family: poppins;
+    font-size: .75rem;
+    outline: none;
+}
+.card .con-text p button:hover {
+    background: #fff;
+    color: #000;
+}
+.ul {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 40;
+    border-radius: 14px;
+    padding-left: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    top: 0px;
+    opacity: 0;
+    transform: translate(100%);
+    transition: all .25s ease;
+}
+
+
+.title {
+    position: relative;
+    text-align: center;
+    font-size: 40px;
+    color: #6a6a6a;
+    margin-top: 100px;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+}
+.rotate-words {
+    display: inline;
+    margin-left: 10px;
+}
+.rotate-words span {
+    width: max-content;
+    position: absolute;
+    background-color: #bb93fc;
+    padding-inline: 10px;
+    opacity: 0;
+    transform-origin: 10% 75%;
+    animation: rotatewords 12s var(--d) linear infinite;
+}
+@keyframes rotatewords {
+    5% {
+        opacity: 1;
+    }
+    10%,
+    20% {
+        opacity: 1;
+        transform: rotate(3deg);
+    }
+    15% {
+        transform: rotate(-1deg);
+    }
+    25% {
+        opacity: 0;
+        transform: translateY(90px);
+        rotate: 10deg;
+    }
+}
